@@ -21,7 +21,7 @@ function stop($var, $e=1) {
     if ($e) exit;
 }
 
-$write = function ($data) use ($kinesisClient) {
+$WriteToKinesisStream = function ($data) use ($kinesisClient) {
     $encoded_data = json_encode($data);
     stop($encoded_data);
 };
