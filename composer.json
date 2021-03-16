@@ -21,10 +21,9 @@
     },
     "autoload": {
         "psr-4": {
-            "AuditLog\\": "src/",
+            "AuditLog\\": "src/"
         }
     },
-
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
