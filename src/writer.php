@@ -3,8 +3,7 @@
 declare(strict_types=1);
 namespace AuditLog;
 
-require '../config/config.php';
-require ROOT. 'vendor/autoload.php';
+require __DIR__ . '/..vendor/autoload.php';
 
 use Aws\Exception\AwsException;
 use Aws\Kinesis\KinesisClient; 
