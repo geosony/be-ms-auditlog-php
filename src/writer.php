@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 namespace AuditLog;
-define('ROOT_PATH', dirname( dirname( __FILE__)));
+define('ROOT_PATH', dirname(  __FILE__, 2));
 
 require ROOT_PATH . '/vendor/autoload.php';
 
@@ -11,14 +11,14 @@ use Aws\Kinesis\KinesisClient;
 
 class Writer
 {
-    private $kinesisClient;
+    private static $kinesisClient;
 
     /**
      *  Create a new Kinesis writer instance
      */
     public function __construct()
     {
-        $this->kinesisClient = new Aws\Kinesis\KinesisClient([
+        self::$kinesisClient = new Aws\Kinesis\KinesisClient([
             'profile' => 'localstack',
             'version' => '2013-12-02',
             'region' => 'us-east-1',
@@ -32,7 +32,7 @@ class Writer
      * @param: array $data data to the stream
      * @return boolean
      */
-    public function write(array $data)
+    public static function write(array $data)
     {
         if (empty($data)) {
             throw new \Exception\InvalidArgumentException('Required data is empty!');
@@ -43,7 +43,7 @@ class Writer
         }
 
         $encoded_data = json_encode($data);
-        $this->assert($encoded_data);
+        self::assert($encoded_data);
     }
 
     /**
@@ -54,7 +54,7 @@ class Writer
      *  @return void
      */
 
-    private function assert($var, $e=1)
+    private static function assert($var, $e=1)
     {
         echo "<pre>";
         print_r($var);
