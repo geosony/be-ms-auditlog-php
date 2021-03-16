@@ -19,11 +19,12 @@ class Writer
     public function __construct()
     {
         $this->kinesisClient = new Aws\Kinesis\KinesisClient([
-            'profile' => AWS_PROFILE,
-            'version' => AWS_SDK_VERSION,
-            'region' => AWS_REGION,
+            'profile' => 'localstack',
+            'version' => '2013-12-02',
+            'region' => 'us-east-1',
         ]);
     }
+
 
     /**
      * Dummy write function to kinesis stream
@@ -42,6 +43,22 @@ class Writer
         }
 
         $encoded_data = json_encode($data);
-        stop($encoded_data);
+        $this->assert($encoded_data);
+    }
+
+    /**
+     *  Method to assert
+     *  
+     *  @param array | string variable to assert
+     *  @param int 1 is true hence 0 is false
+     *  @return void
+     */
+
+    private function assert($var, $e=1)
+    {
+        echo "<pre>";
+        print_r($var);
+        echo "</pre>";
+        if ($e) exit;
     }
 }
