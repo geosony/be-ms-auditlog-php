@@ -18,7 +18,7 @@
     ],
     "require": {
         "aws/aws-sdk-php": "~3.0",
-        "php" : "~8.0.3"
+        "php" : ">=7.2"
     },
     "extra": {
         "branch-alias": {
