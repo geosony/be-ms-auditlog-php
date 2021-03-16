@@ -18,11 +18,13 @@ class Writer
      */
     public function __construct()
     {
-        self::$kinesisClient = new Aws\Kinesis\KinesisClient([
+        self::$kinesisClient = new KinesisClient([
             'profile' => 'localstack',
             'version' => '2013-12-02',
             'region' => 'us-east-1',
+            'endpoint' => 'http://localhost:4566/',
         ]);
+
     }
 
 
