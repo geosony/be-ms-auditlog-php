@@ -11,10 +11,6 @@ use Aws\Kinesis\KinesisClient;
 
 class Writer
 {
-    private $AWS_PROFILE = 'localstack';
-    private $AWS_SDK_VERSION = '2013-12-02';
-    private $AWS_REGION = 'us-east-1';
-
     private $kinesisClient;
 
     /**
@@ -23,9 +19,9 @@ class Writer
     public function __construct()
     {
         $this->kinesisClient = new Aws\Kinesis\KinesisClient([
-            'profile' => $this->AWS_PROFILE,
-            'version' => $this->AWS_SDK_VERSION,
-            'region' => $this->AWS_REGION,
+            'profile' => AWS_PROFILE,
+            'version' => AWS_SDK_VERSION,
+            'region' => AWS_REGION,
         ]);
     }
 
