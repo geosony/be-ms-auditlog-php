@@ -43,8 +43,21 @@ class Writer
         }
 
         $encoded_data = json_encode($data);
-        self::assert($encoded_data);
-    }
+        
+        try {
+            $result = self::$kinesisClient->PutRecord([
+                'Data' => $encoded_data,
+                'StreamName' => "teststream",
+                'PartitionKey' => "1"
+            ]);
+            //print("<p>ShardID = " . $result["ShardId"] . "</p>");
+            self::assert($result);
+        } catch (AwsException $e) {
+            // output error message if fails
+            echo $e->getMessage();
+            echo "\n";
+        }
+    }    
 
     /**
      *  Method to assert
@@ -53,7 +66,6 @@ class Writer
      *  @param int 1 is true hence 0 is false
      *  @return void
      */
-
     private static function assert($var, $e=1)
     {
         echo "<pre>";
