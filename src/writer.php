@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 namespace AuditLog;
+define('ROOT_PATH', dirname( dirname( __FILE__)));
 
-require __DIR__ . '/..vendor/autoload.php';
+require ROOT_PATH . '/vendor/autoload.php';
 
 use Aws\Exception\AwsException;
 use Aws\Kinesis\KinesisClient; 
